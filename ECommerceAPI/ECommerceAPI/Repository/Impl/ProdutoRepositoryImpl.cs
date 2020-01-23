@@ -35,12 +35,12 @@ namespace ECommerceAPI.Repository
 
         public List<Produto> ListarTodos()
         {
-            return _context.Produtos.ToList();
+            return _context.Produtos.Include(p => p.UsuarioCriador).ToList();
         }
 
         public List<Produto> ListarTodosAtivos()
         {
-            return _context.Produtos.Where(p => p.Ativo == true).ToList();
+            return _context.Produtos.Include(p => p.UsuarioCriador).Where(p => p.Ativo == true).ToList();
         }
 
         public void Remover(int id)
