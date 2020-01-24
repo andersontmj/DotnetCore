@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ECommerceAPI.Models;
 using ECommerceAPI.Repository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ECommerceAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "ADIM")]
+
     public class ProdutosController : ControllerBase
     {
         private readonly ProdutoRepository _produtoRepository;

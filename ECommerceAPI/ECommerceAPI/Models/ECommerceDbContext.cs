@@ -15,6 +15,7 @@ namespace ECommerceAPI.Models
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Perfil> Perfis { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Estoque> Estoques { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,6 +31,12 @@ namespace ECommerceAPI.Models
             {
                 entity.HasOne(c => c.UsuarioCriador).WithMany(u => u.Produtos).HasForeignKey(p => p.IdUsuario);
                 entity.ToTable("Produto");
+            });
+            modelBuilder.Entity<Estoque>(entity =>
+            {
+                entity.Property(e => e.Quantidade).IsRequired();
+                entity.HasOne(e => e.Produto).WithOne(p => p.Estoque).HasForeignKey<Estoque>(e => e.IdProduto);
+                entity.ToTable("Estoque");
             });
         }
     }

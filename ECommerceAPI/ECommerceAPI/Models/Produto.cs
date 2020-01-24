@@ -17,5 +17,8 @@ namespace ECommerceAPI.Models
         public string Descricao { get; set; }
         public bool Ativo { get; set; }
         public DateTime DataModificacao { get; set; }
+        public int IdUsuario { get; set; }
+        public Usuario UsuarioCriador { get; set; }
+        public virtual Estoque Estoque { get; set; }
     }
 }
